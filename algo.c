@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 10:55:36 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/09 16:55:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/07/11 22:15:17 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void sorter(t_node **stack_a, t_node **stack_b)
 	t_node *tmp;
 	int size;
 	int num;
-
-	i = size - 1;
 	position(*stack_b);
 	tmp = *stack_b;
+	size = ft_lstsize(*stack_b);
+	i = size - 1;
 	while (i >= 0)
 	{
 		// printf("-----\n");
