@@ -6,30 +6,11 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:12:13 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/02 23:32:07 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/12 03:28:31 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	len;
-	size_t	i;
-
-	len = ft_strlen(src);
-	i = 0;
-	if (dstsize != 0)
-	{
-		while ((i < dstsize - 1) && src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (len);
-}
 
 static size_t	ft_count(char const *s, char c)
 {

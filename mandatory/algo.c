@@ -5,64 +5,85 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/08 10:55:36 by codespace         #+#    #+#             */
-/*   Updated: 2024/07/11 22:15:17 by akoutate         ###   ########.fr       */
+/*   Created: 2024/07/12 02:44:20 by akoutate          #+#    #+#             */
+/*   Updated: 2024/07/12 05:10:11 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sorter(t_node **stack_a, t_node **stack_b)
+void	sort_3_2(t_node **stack)
 {
-	int i;
-	t_node *tmp;
-	int size;
-	int num;
+	if (ft_lstsize(*stack) == 2)
+	{
+		if ((*stack)->x > (*stack)->next->x)
+			rotate(stack, 'a');
+	}
+	else
+	{
+		if ((*stack)->x > (*stack)->next->x)
+			swap(stack, 'a');
+		if ((*stack)->next->x > (*stack)->next->next->x)
+			rrotate(stack, 'a');
+		if ((*stack)->x > (*stack)->next->x)
+			swap(stack, 'a');
+	}
+}
+
+void	sort_4_5(t_node **stack_a, t_node **stack_b)
+{
+	int		i;
+	int		size;
+	t_node	*tmp;
+
+	i = 0;
+	if (ft_lstsize(*stack_a) == 4)
+		size = 1;
+	else
+		size = 2;
+	while (i < size)
+	{
+		tmp = *stack_a;
+		set_index(*stack_a);
+		while (tmp->pos != i)
+			tmp = tmp->next;
+		rotate_and_push(stack_a, tmp, 'a');
+		pb(stack_a, stack_b);
+		i++;
+	}
+	sort_3_2(stack_a);
+	while (*stack_b)
+		pa(stack_a, stack_b);
+}
+
+void	sorter(t_node **stack_a, t_node **stack_b)
+{
+	t_node	*tmp;
+	int		i;
+	int		size;
+
 	position(*stack_b);
-	tmp = *stack_b;
 	size = ft_lstsize(*stack_b);
 	i = size - 1;
 	while (i >= 0)
 	{
-		// printf("-----\n");
-		// ft_lstiter(*stack_b);
-		// printf("-----\n");
-		// ft_lstiter(*stack_a);
 		size = ft_lstsize(*stack_b);
 		set_index(*stack_b);
 		tmp = *stack_b;
 		while (tmp->pos != i)
 			tmp = tmp->next;
-		num = tmp->x;
-		if (tmp && tmp->index + 1 <= size / 2)
-		{
-			while (num != (*stack_b)->x)
-			{
-				rotate(stack_b, 'b');
-			}
-		}
-		else
-		{
-			while (num != (*stack_b)->x)
-			{
-				rrotate(stack_b, 'b');
-			}
-		}
+		rotate_and_push(stack_b, tmp, 'b');
 		pa(stack_a, stack_b);
- 		i--;
+		i--;
 	}
 }
 
-void algo(t_node **stack_a, t_node **stack_b, int size)
+void	algo(t_node **stack_a, t_node **stack_b, int size)
 {
-	t_node *tmp;
-	int	i;
-	int x;
+	int		i;
+	int		x;
 
-	tmp = *stack_a;
 	i = 0;
-	position(*stack_a);
-
 	if (size <= 100)
 		x = 16;
 	else
@@ -81,28 +102,27 @@ void algo(t_node **stack_a, t_node **stack_b, int size)
 			i++;
 		}
 		else
-		{
 			rotate(stack_a, 'a');
-		}
-
 	}
 	sorter(stack_a, stack_b);
 }
 
-void starter(t_node **stack_a, t_node **stack_b)
+void	starter(t_node **stack_a, t_node **stack_b)
 {
-	int size;
+	t_node	*tmp;
+	int		size;
 
+	tmp = *stack_a;
 	size = ft_lstsize(*stack_a);
+	position(*stack_a);
 	if (sorted_checker(*stack_a))
 		return ;
 	if (size == 1)
 		return ;
-	else if (size == 2)
-	{
-		if ((*stack_a)->x > (*stack_a)->next->x)
-			rotate(stack_a, 'a');
-	}
+	else if (size == 2 || size == 3)
+		sort_3_2(stack_a);
+	else if (size == 4 || size == 5)
+		sort_4_5(stack_a, stack_b);
 	else
 		algo(stack_a, stack_b, size);
 }

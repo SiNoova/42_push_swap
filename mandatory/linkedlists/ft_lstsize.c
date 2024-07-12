@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 08:26:25 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/03 07:02:21 by akoutate         ###   ########.fr       */
+/*   Created: 2024/06/28 08:22:08 by akoutate          #+#    #+#             */
+/*   Updated: 2024/07/12 03:47:38 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-t_node *ft_lstlast(t_node *lst)
+int	ft_lstsize(t_node *lst)
 {
-	while (lst->next)
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
 		lst = lst->next;
-	return lst;
+		i++;
+	}
+	return (i);
 }

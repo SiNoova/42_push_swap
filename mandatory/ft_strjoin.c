@@ -6,16 +6,17 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:14:55 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/05 00:29:47 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/12 03:29:17 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
