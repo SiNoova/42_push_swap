@@ -6,7 +6,7 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 06:17:05 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/12 05:11:04 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 08:19:20 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*fill_str(char **av, int ac)
 		{
 			write (2, "Error\n", 6);
 			if (i != 1)
-				free(tmp);
+				free(str);
 			exit(1);
 		}
 		if (i != 1)
@@ -54,6 +54,19 @@ char	*fill_str(char **av, int ac)
 		i++;
 	}
 	return (str);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
 
 char	**init_linked_list(t_node **stack_a, char *str)
@@ -74,26 +87,11 @@ char	**init_linked_list(t_node **stack_a, char *str)
 		{
 			write(2, "Error\n", 6);
 			ft_lstiter(*stack_a);
-			i = 0;
-			while (split[i])
-				free(split[i++]);
+			free_split(split);
 			exit(1);
 		}
 	}
 	return (split);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
 }
 
 int	main(int ac, char **av)

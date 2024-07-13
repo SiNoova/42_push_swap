@@ -6,7 +6,7 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 03:54:03 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 06:43:30 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 08:26:12 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,11 @@ void	ss(t_node **stack_a, t_node **stack_b)
 {
 	swap(stack_a);
 	swap(stack_b);
+}
+
+void	fr(char	*hhh, char *str, int i)
+{
+	if (i)
+		free(hhh);
+	free (str);
 }

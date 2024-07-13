@@ -6,7 +6,7 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 06:14:32 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 06:43:24 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 08:26:23 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,10 @@ size_t	ft_strlen_g(const char *s, int a);
 
 		//sorter funcs
 
-void	str_pars(char *str);
+int		str_pars(char *str);
 char	*fill_str(char **av, int ac);
 char	**init_linked_list(t_node **stack_a, char *str);
 void	free_split(char **split);
+void	fr(char	*hhh, char *str, int i);
 
 #endif

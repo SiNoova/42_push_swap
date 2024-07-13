@@ -6,7 +6,7 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 06:17:05 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 06:42:56 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 08:56:42 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ char	**save_split_moves(char *str)
 	i = 0;
 	while (str)
 	{
-		str_pars(str);
+		if (str_pars(str) == -1)
+			return (fr(hhh, str, i), NULL);
 		tmp = hhh;
 		hhh = ft_strjoin(hhh, str);
 		if (i)
@@ -99,12 +100,9 @@ int	main(int ac, char **av)
 	split = init_linked_list(&stack_a, str);
 	free(str);
 	free_split(split);
-	if (sorted_checker(stack_a))
-	{
-		ft_lstiter(stack_a);
-		return (0);
-	}
 	split = save_split_moves(str);
+	if (!split)
+		return (ft_lstiter(stack_a), 0);
 	sort(split, &stack_a, &stack_b);
 	if (sorted_checker(stack_a) && !stack_b)
 		write(1, "OK\n", 3);
