@@ -6,11 +6,11 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 08:26:25 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/12 03:47:31 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 01:40:11 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../push_swap_bonus.h"
 
 t_node	*ft_lstlast(t_node *lst)
 {

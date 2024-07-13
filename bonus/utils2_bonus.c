@@ -1,71 +1,87 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/12 04:35:06 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 00:25:01 by akoutate         ###   ########.fr       */
+/*   Created: 2024/07/13 05:12:46 by akoutate          #+#    #+#             */
+/*   Updated: 2024/07/13 05:13:25 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-void	set_index(t_node *stack)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*ss1;
+	unsigned char	*ss2;
 
 	i = 0;
-	if (!stack)
-		return ;
-	while (stack)
+	ss1 = (unsigned char *)s1;
+	ss2 = (unsigned char *)s2;
+	while ((ss1[i] || ss2[i]))
 	{
-		stack->index = i;
-		stack = stack->next;
+		if (ss1[i] != ss2[i])
+			return (ss1[i] - ss2[i]);
 		i++;
 	}
+	return (0);
 }
 
-void	put_position(t_node *stack, t_node *tmp, int smol, int size)
+void str_pars(char *str)
 {
+	char *moves[12];
 	int		i;
 
 	i = 0;
-	while (i <= size)
+	moves[0] = "pa\n";
+	moves[1] = "pb\n";
+	moves[2] = "ra\n";
+	moves[3] = "rb\n";
+	moves[4] = "rr\n";
+	moves[5] = "rra\n";
+	moves[6] = "rrb\n";
+	moves[7] = "rrr\n";
+	moves[8] = "sa\n";
+	moves[9] = "sb\n";
+	moves[10] = "ss\n";
+	moves[11] = NULL;
+	while (moves[i])
 	{
-		smol = INT_MAX;
-		tmp = stack;
-		while (tmp)
-		{
-			if (tmp->x <= smol && tmp->i == 0)
-				smol = tmp->x;
-			tmp = tmp->next;
-		}
-		tmp = stack;
-		while (tmp)
-		{
-			if (tmp->x == smol)
-			{
-				tmp->i = 1;
-				tmp->pos = i;
-			}
-			tmp = tmp->next;
-		}
-		i++;
+		if (ft_strcmp(str, moves[i]))
+			i++;
+		else
+			return ;
 	}
+	write (1, "Error\n", 6);
+	exit(1);
 }
 
-void	rotate_and_push(t_node **stack, t_node *tmp, char c)
+char	*fill_str(char **av, int ac)
 {
-	if (tmp->index <= ft_lstsize(*stack) / 2)
+	char	*str;
+	char	*tmp;
+	int		i;
+
+	str = "";
+	i = 1;
+	while (i < ac)
 	{
-		while ((*stack)->x != tmp->x)
-			rotate(stack, c);
+		tmp = str;
+		if (empty_str(av[i]))
+			str = ft_strjoin(str, av[i]);
+		else
+		{
+			write (2, "Error\n", 6);
+			if (i != 1)
+				free(tmp);
+			exit(1);
+		}
+		if (i != 1)
+			free(tmp);
+		i++;
 	}
-	else
-	{
-		while ((*stack)->x != tmp->x)
-			rrotate(stack, c);
-	}
+	return (str);
 }

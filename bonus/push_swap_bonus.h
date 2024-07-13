@@ -6,12 +6,14 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 06:14:32 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 00:34:50 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 05:13:59 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
+
+# define BUFFER_SIZE 5
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -47,25 +49,28 @@ int		ft_strlen(const char *str);
 
 void	pa(t_node **stack_a, t_node **stack_b);
 void	pb(t_node **stack_a, t_node **stack_b);
-void	rotate(t_node **stack, char c);
-void	swap(t_node **stack, char c);
+void	rotate(t_node **stack);
+void	swap(t_node **stack);
 void	ss(t_node **stack_a, t_node **stack_b);
-void	rrotate(t_node **stack, char c);
+void	rrotate(t_node **stack);
 void	rrr(t_node **stack_a, t_node **stack_b);
-
-		// algo
-
-int		sorted_checker(t_node *stack);
-void	starter(t_node **stack_a, t_node **stack_b);
-void	position(t_node *stack);
-void	set_index(t_node *stack);
-void	rotate_and_push(t_node **stack_a, t_node *tmp, char c);
-void	put_position(t_node *stack, t_node *tmp, int smol, int size);
-void	set_index(t_node *stack);
+void	rr(t_node **stack_a, t_node **stack_b);
 
 		// parsing
 
 int		empty_str(char *str);
 int		parsing(char **lst, char *str, int j);
+int		sorted_checker(t_node *stack);
+		// get_next_line funcs
+
+char	*get_next_line(int fd);
+char	*ft_strjoin_g(char *s1, char *s2);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
+size_t	ft_strlen_g(const char *s, int a);
+
+int		ft_strcmp(const char *s1, const char *s2);
+void 	str_pars(char *str);
+char	*fill_str(char **av, int ac);
 
 #endif

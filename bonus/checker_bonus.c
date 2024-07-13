@@ -1,60 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 06:17:05 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/12 05:11:04 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 05:27:50 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	position(t_node *stack)
-{
-	t_node	*tmp;
-	int		size;
-	int		smol;
-
-	tmp = stack;
-	smol = 0;
-	size = ft_lstsize(stack) - 1;
-	while (tmp)
-	{
-		tmp->i = 0;
-		tmp = tmp->next;
-	}
-	put_position(stack, tmp, smol, size);
-}
-
-char	*fill_str(char **av, int ac)
-{
-	char	*str;
-	char	*tmp;
-	int		i;
-
-	str = "";
-	i = 1;
-	while (i < ac)
-	{
-		tmp = str;
-		if (empty_str(av[i]))
-			str = ft_strjoin(str, av[i]);
-		else
-		{
-			write (2, "Error\n", 6);
-			if (i != 1)
-				free(tmp);
-			exit(1);
-		}
-		if (i != 1)
-			free(tmp);
-		i++;
-	}
-	return (str);
-}
+#include "push_swap_bonus.h"
 
 char	**init_linked_list(t_node **stack_a, char *str)
 {
@@ -96,12 +52,42 @@ void	free_split(char **split)
 	free(split);
 }
 
+char	**save_split_moves()
+{
+	char *str;
+	char *hhh;
+	char	*tmp;
+	int	i;
+	
+	hhh = "";
+	str = get_next_line(0);
+	i = 0;
+	while (str)
+	{
+		str_pars(str);
+		tmp = hhh;
+		hhh = ft_strjoin(hhh, str);
+		if (i)
+			free(tmp);
+		free(str);
+		str = get_next_line(0);
+		i++;
+	}
+	return (ft_split("hhh" , ' '));
+}
+
+void leaks()
+{
+	system("leaks a.out");
+}
+
 int	main(int ac, char **av)
 {
+	atexit(leaks);
+	int i = 0;
 	t_node	*stack_a;
 	t_node	*stack_b;
 	char	**split;
-	char	*str;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -111,6 +97,47 @@ int	main(int ac, char **av)
 	split = init_linked_list(&stack_a, str);
 	free(str);
 	free_split(split);
-	starter(&stack_a, &stack_b);
+	if (sorted_checker(stack_a))
+	{
+		ft_lstiter(stack_a);
+		return (0);
+	}
+	
+	split = save;
+	if (split[0])
+		free (hhh);
+	i = 0;
+	while (split[i])
+	{
+		if (!ft_strcmp(split[i], "pa\n"))
+			pa(&stack_a, &stack_b);
+		else if (!ft_strcmp(split[i], "pb\n"))
+			pb(&stack_a, &stack_b);
+		else if (!ft_strcmp(split[i], "ra\n"))
+			rotate(&stack_a);
+		else if (!ft_strcmp(split[i], "rb\n"))
+			rotate(&stack_b);
+		else if (!ft_strcmp(split[i], "rr\n"))
+			rr(&stack_a, &stack_b);
+		else if (!ft_strcmp(split[i], "rra\n"))
+			rrotate(&stack_a);
+		else if (!ft_strcmp(split[i], "rrb\n"))
+			rrotate(&stack_b);
+		else if (!ft_strcmp(split[i], "rrr\n"))
+			rrr(&stack_a, &stack_b);
+		else if (!ft_strcmp(split[i], "sa\n"))
+			swap(&stack_a);
+		else if (!ft_strcmp(split[i], "sb\n"))
+			swap(&stack_b);
+		else if (!ft_strcmp(split[i], "ss\n"))
+			swap(&stack_b);
+		i++;
+	}
+	if (sorted_checker(stack_a) && !stack_b)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	free_split(split);
 	ft_lstiter(stack_a);
+	ft_lstiter(stack_b);
 }

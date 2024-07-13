@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrotate.c                                          :+:      :+:    :+:   */
+/*   rrotate_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 03:55:10 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/12 04:01:01 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 04:15:47 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-void	rrotate(t_node **stack, char c)
+void	rrotate(t_node **stack)
 {
 	t_node	*second_last;
 	t_node	*last_node;
@@ -26,16 +26,11 @@ void	rrotate(t_node **stack, char c)
 		second_last->next = NULL;
 		last_node->next = *stack;
 		*stack = last_node;
-		if (c == 'a')
-			write(1, "rra\n", 4);
-		else if (c == 'b')
-			write(1, "rrb\n", 4);
 	}
 }
 
 void	rrr(t_node **stack_a, t_node **stack_b)
 {
-	rrotate(stack_a, '2');
-	rrotate(stack_b, '2');
-	write(1, "rrr\n", 4);
+	rrotate(stack_a);
+	rrotate(stack_b);
 }

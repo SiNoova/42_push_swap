@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_rotate.c                                      :+:      :+:    :+:   */
+/*   push_rotate_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 02:25:28 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/12 03:56:14 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 04:13:57 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 void	pa(t_node **stack_a, t_node **stack_b)
 {
@@ -22,7 +22,6 @@ void	pa(t_node **stack_a, t_node **stack_b)
 		*stack_b = (*stack_b)->next;
 		tmp->next = *stack_a;
 		*stack_a = tmp;
-		write(1, "pa\n", 3);
 	}
 }
 
@@ -36,11 +35,10 @@ void	pb(t_node **stack_a, t_node **stack_b)
 		*stack_a = (*stack_a)->next;
 		tmp->next = *stack_b;
 		*stack_b = tmp;
-		write(1, "pb\n", 3);
 	}
 }
 
-void	rotate(t_node **stack, char c)
+void	rotate(t_node **stack)
 {
 	t_node	*tmp;
 
@@ -50,16 +48,11 @@ void	rotate(t_node **stack, char c)
 		*stack = (*stack)->next;
 		ft_lstlast(tmp)->next = tmp;
 		tmp->next = NULL;
-		if (c == 'a')
-			write (1, "ra\n", 3);
-		else if (c == 'b')
-			write (1, "rb\n", 3);
 	}
 }
 
 void	rr(t_node **stack_a, t_node **stack_b)
 {
-	rotate(stack_a, '3');
-	rotate(stack_b, '3');
-	write(1, "rr\n", 3);
+	rotate(stack_a);
+	rotate(stack_b);
 }
