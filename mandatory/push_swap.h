@@ -6,7 +6,7 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 06:14:32 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 00:34:14 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 06:33:52 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
 

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 08:06:13 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 01:40:19 by akoutate         ###   ########.fr       */
+/*   Created: 2024/06/28 08:26:25 by akoutate          #+#    #+#             */
+/*   Updated: 2024/07/13 06:42:47 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_bonus.h"
 
-t_node	*ft_lstnew(int x)
+t_node	*ft_lstlast(t_node *lst)
 {
-	t_node	*new_node;
+	t_node	*temp;
 
-	new_node = malloc(sizeof(t_node));
-	if (!new_node)
+	if (!lst)
 		return (NULL);
-	new_node->x = x;
-	new_node->index = -1;
-	new_node->i = -1;
-	new_node->pos = 0;
-	new_node->next = NULL;
-	return (new_node);
+	temp = lst;
+	while (temp)
+	{
+		if (!temp->next)
+			return (temp);
+		temp = temp->next;
+	}
+	return (lst);
 }

@@ -6,7 +6,7 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 05:12:46 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 05:13:25 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 06:43:35 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void str_pars(char *str)
+void	str_pars(char *str)
 {
-	char *moves[12];
+	char	*moves[12];
 	int		i;
 
 	i = 0;
@@ -84,4 +84,44 @@ char	*fill_str(char **av, int ac)
 		i++;
 	}
 	return (str);
+}
+
+char	**init_linked_list(t_node **stack_a, char *str)
+{
+	int		i;
+	char	**split;
+
+	i = 0;
+	split = ft_split(str, ' ');
+	while (split[i])
+	{
+		if (parsing(split, split[i], i))
+		{
+			ft_lstadd_back(stack_a, ft_lstnew(my_atoi(split[i])));
+			i++;
+		}
+		else
+		{
+			write(2, "Error\n", 6);
+			ft_lstiter(*stack_a);
+			i = 0;
+			while (split[i])
+				free(split[i++]);
+			exit(1);
+		}
+	}
+	return (split);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

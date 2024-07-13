@@ -6,7 +6,7 @@
 /*   By: akoutate <akoutate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 06:14:32 by akoutate          #+#    #+#             */
-/*   Updated: 2024/07/13 05:13:59 by akoutate         ###   ########.fr       */
+/*   Updated: 2024/07/13 06:43:24 by akoutate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define BUFFER_SIZE 5
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
 
@@ -44,6 +43,7 @@ int		my_atoi(char *str);
 char	*ft_strjoin(const char *s1, const char *s2);
 char	**ft_split(char const *s, char c);
 int		ft_strlen(const char *str);
+int		ft_strcmp(const char *s1, const char *s2);
 
 		// moves 
 
@@ -61,6 +61,7 @@ void	rr(t_node **stack_a, t_node **stack_b);
 int		empty_str(char *str);
 int		parsing(char **lst, char *str, int j);
 int		sorted_checker(t_node *stack);
+
 		// get_next_line funcs
 
 char	*get_next_line(int fd);
@@ -69,8 +70,11 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 size_t	ft_strlen_g(const char *s, int a);
 
-int		ft_strcmp(const char *s1, const char *s2);
-void 	str_pars(char *str);
+		//sorter funcs
+
+void	str_pars(char *str);
 char	*fill_str(char **av, int ac);
+char	**init_linked_list(t_node **stack_a, char *str);
+void	free_split(char **split);
 
 #endif
