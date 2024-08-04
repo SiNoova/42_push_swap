@@ -36,6 +36,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ_PUSH_SWAP)
 	$(CC) $(FLAGS) $^ -o $@
+	@touch .reset
 
 bonus: $(BONUS_NAME)
 
